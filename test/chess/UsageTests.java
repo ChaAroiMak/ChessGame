@@ -1,5 +1,6 @@
 package chess;
 
+import Board.ChessBoardPosition;
 import Exceptions.GameException;
 import Exceptions.StatusException;
 import Pieces.ChessPieceColor;
@@ -18,6 +19,11 @@ public class UsageTests {
 
     private ChessGame getPosition() {
         return new ChessGameImpl();
+    }
+
+    private ChessGame getChessGame() {
+        return new ChessGameImpl();
+
     }
 
 
@@ -80,7 +86,7 @@ public class UsageTests {
         Assert.assertEquals(ChessPieceColor.white, spieler2Color);
     }
 
-  /*  @Test
+  @Test
     public void goodSet1() throws GameException, StatusException {
         ChessGame chess = this.getPosition();
         ChessPieceColor spieler1Color = chess.pick(SPIELER1, ChessPieceColor.white);
@@ -88,10 +94,106 @@ public class UsageTests {
 
         ChessBoardPosition position = new ChessBoardPosition("A", 3);
 
-        Assert.assertFalse(ChessBoardPosition., position);
+        Assert.assertFalse(chess.set(ChessPieceColor.white, position));
+  }
+
+    @Test(expected = GameException.class)
+    public void failureSetOutside() throws GameException, StatusException {
+        ChessGame chess = this.getPosition();
+        ChessPieceColor spieler1Color = chess.pick(SPIELER1, ChessPieceColor.white);
+        ChessPieceColor spieler2Color = chess.pick(SPIELER2, ChessPieceColor.black);
+
+        ChessBoardPosition position = new ChessBoardPosition("X", 100);
+
+        chess.set(ChessPieceColor.white, position);
     }
 
-   */
+    @Test(expected = GameException.class)
+    public void failureSetOutside2() throws GameException, StatusException {
+        ChessGame chess = this.getPosition();
+        ChessPieceColor spieler1Color = chess.pick(SPIELER1, ChessPieceColor.white);
+        ChessPieceColor spieler2Color = chess.pick(SPIELER2, ChessPieceColor.black);
+
+        ChessBoardPosition position = new ChessBoardPosition("A", 100);
+
+        chess.set(ChessPieceColor.white, position);
+    }
+
+    @Test
+    public void marginSet1() throws GameException, StatusException {
+        ChessGame chess = this.getPosition();
+        ChessPieceColor spieler1Color = chess.pick(SPIELER1, ChessPieceColor.white);
+        ChessPieceColor spieler2Color = chess.pick(SPIELER2, ChessPieceColor.black);
+
+        ChessBoardPosition position = new ChessBoardPosition("A", 1);
+
+        Assert.assertFalse(chess.set(ChessPieceColor.white, position));
+    }
+
+    @Test
+    public void marginSet2() throws GameException, StatusException {
+        ChessGame chess = this.getPosition();
+        ChessPieceColor spieler1Color = chess.pick(SPIELER1, ChessPieceColor.white);
+        ChessPieceColor spieler2Color = chess.pick(SPIELER2, ChessPieceColor.black);
+
+        ChessBoardPosition position = new ChessBoardPosition("H", 8);
+
+        Assert.assertFalse(chess.set(ChessPieceColor.white, position));
+    }
+
+    @Test(expected = StatusException.class)
+    public void failureStatus1() throws GameException, StatusException {
+        ChessGame chess = this.getPosition();
+        ChessBoardPosition position = new ChessBoardPosition("C", 4);
+        chess.set(ChessPieceColor.white, position);
+    }
+
+    @Test(expected = StatusException.class)
+    public void failureStatus2() throws GameException, StatusException {
+        ChessGame chess = this.getPosition();
+        ChessPieceColor spieler1Color = chess.pick(SPIELER1, ChessPieceColor.white);
+        ChessPieceColor spieler2Color = chess.pick(SPIELER2, ChessPieceColor.white);
+
+        ChessBoardPosition position = new ChessBoardPosition("C", 4);
+        chess.set(ChessPieceColor.white, position);
+        chess.pick(SPIELER2,  ChessPieceColor.white);
+    }
+
+    @Test
+    public void goodCompleteGame() throws  GameException, StatusException {
+        ChessGame chess = this.getPosition();
+        ChessPieceColor spieler1Color = chess.pick(SPIELER1,ChessPieceColor.white);
+        ChessPieceColor spieler2Color = chess.pick(SPIELER2, ChessPieceColor.black);
+
+        ChessBoardPosition position = new ChessBoardPosition("F", 3);
+        Assert.assertFalse(chess.set(ChessPieceColor.white, position));
+
+        position = new ChessBoardPosition("E",5);
+        Assert.assertFalse(chess.set(ChessPieceColor.black, position));
+
+        position = new ChessBoardPosition("G",4);
+        Assert.assertFalse(chess.set(ChessPieceColor.white, position));
+
+        position = new ChessBoardPosition("H",4);
+        Assert.assertTrue(chess.set(ChessPieceColor.black, position));
+    }
+
+    @Test(expected = GameException.class)
+    public void failureSetSamePositionSameColor()throws GameException,StatusException {
+        ChessGame chess = this.getPosition();
+        ChessPieceColor spieler1Color = chess.pick(SPIELER1, ChessPieceColor.white);
+        ChessPieceColor spieler2Color = chess.pick(SPIELER2, ChessPieceColor.black);
+
+        ChessBoardPosition position = new ChessBoardPosition("A", 5);
+
+        chess.set(ChessPieceColor.black, position);
+        chess.set(ChessPieceColor.black, position);
+
+    }
+
+
+
+
 
 
 
