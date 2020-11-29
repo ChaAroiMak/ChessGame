@@ -4,6 +4,9 @@ import Board.ChessBoardPosition;
 import Board.Tile;
 
 public class Rook implements Piece{
+    public Rook(boolean b) {
+    }
+
     @Override
     public boolean isWhite() {
         return false;
@@ -11,6 +14,16 @@ public class Rook implements Piece{
 
     @Override
     public void setWhite(boolean white) {
+
+    }
+
+    @Override
+    public boolean isBlack() {
+        return false;
+    }
+
+    @Override
+    public void setBlack(boolean black) {
 
     }
 
@@ -25,7 +38,8 @@ public class Rook implements Piece{
     }
 
     @Override
-    public boolean canMove(ChessBoardPosition board, Tile start, Tile end) {
+    public boolean canMove(ChessBoardPosition position, Tile start, Tile end) {
+        this.position = position;
         return false;
     }
 }

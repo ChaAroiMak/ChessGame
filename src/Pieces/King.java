@@ -18,6 +18,16 @@ public class King implements Piece {
     }
 
     @Override
+    public boolean isBlack() {
+        return false;
+    }
+
+    @Override
+    public void setBlack(boolean black) {
+
+    }
+
+    @Override
     public boolean isKilled() {
         return false;
     }
