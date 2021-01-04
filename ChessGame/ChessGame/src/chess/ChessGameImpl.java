@@ -7,27 +7,12 @@ import Exceptions.MovementException;
 import Exceptions.StatusException;
 import Pieces.ChessPieceColor;
 import Pieces.ChessPieceType;
-import view.ChessPrintStreamView;
-import view.PrintStreamView;
 
 import java.util.HashMap;
 
 public class ChessGameImpl implements ChessGame {
-    private final String localPlayerName;
     private Status status = Status.START;
     HashMap<ChessPieceColor, String> player = new HashMap<>();
-    
-    public ChessGameImpl(String localPlayerName){
-        this.localPlayerName = localPlayerName;
-    }
-
-    /**
-     * produce print stream view - TODO discuss - not a perfect solution, though
-     * @return
-     */
-    public PrintStreamView getPrintStreamView() {
-        return new ChessPrintStreamView(this.board);
-    }
 
     @Override
     public ChessPieceColor pick(String userName, ChessPieceColor wantedColor) throws GameException, StatusException {

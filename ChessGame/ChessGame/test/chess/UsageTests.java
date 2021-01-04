@@ -226,7 +226,7 @@ public class UsageTests {
     @Test
     public void goodPieceNumberStart() {// 32 chess pieces total in the beginning
         ChessPieceNumber total = new ChessPieceNumber();
-        total.setTotalPieces(16,16);
+        total.setTotalPieces(32);
     }
 
     public void goodPieceNumberTotal() { //total pieces are all black and white pieces together
@@ -238,19 +238,19 @@ public class UsageTests {
     @Test (expected = Exception.class)
     public void badPieceNumberStart() {//no more than 32 pieces in the beginning
         ChessPieceNumber total = new ChessPieceNumber();
-        total.setTotalPieces(16,20);
+        total.setTotalPieces(40);
     }
 
     @Test (expected = Exception.class)
     public void badPieceNumberStart1() {//no less than 32 pieces in the beginning
         ChessPieceNumber total = new ChessPieceNumber();
-        total.setTotalPieces(13,16);
+        total.setTotalPieces(31);
     }
 
     @Test (expected = Exception.class)
     public void badPieceNumberStart2() {//no empty board in the beginning
         ChessPieceNumber total = new ChessPieceNumber();
-        total.setTotalPieces(0,0);
+        total.setTotalPieces(31);
     }
 
     //check black pieces
