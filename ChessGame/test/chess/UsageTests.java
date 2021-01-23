@@ -22,7 +22,7 @@ public class UsageTests {
         return new ChessGameImpl();
     }
 
-    private ChessGame getChessGame() {
+    private ChessGameImpl getChessGame() {
         return new ChessGameImpl();
 
     }

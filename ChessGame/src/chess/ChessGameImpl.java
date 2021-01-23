@@ -13,12 +13,16 @@ import view.PrintStreamView;
 import java.util.HashMap;
 
 public class ChessGameImpl implements ChessGame {
-    private final String localPlayerName;
+    private String localPlayerName = null;
     private Status status = Status.START;
     HashMap<ChessPieceColor, String> player = new HashMap<>();
     
     public ChessGameImpl(String localPlayerName){
         this.localPlayerName = localPlayerName;
+    }
+
+    public ChessGameImpl() {
+
     }
 
     /**
